@@ -1,0 +1,670 @@
+# ~~ STEVE ALIAS ~~
+# You can define as many files for your aliases as you want and each of them can contain multiple aliases.
+# The only requirement is that the file is in YAML format and is placed in "aliases" folder.
+# Plugin will try to go through your files and collect as many valid aliases as possible.
+# In case of conflicts or incorrect definitions, plugin will report them and affected aliases won't be loaded.
+
+messageme|msgme: # top command, | is separator for synonyms
+  0: "msg Wassup %sender_name%? You didn't enter any arguments."
+  1: "msg Wassup %sender_name%? You entered one argument: !1"
+  2-3: "msg Wassup %sender_name%? You entered two or three argument: !2-3"
+  _: "msg Wassup %sender_name%? You entered more arguments: !_"
+
+#localchat:
+#  0: "reply §6Musíš zadat text zprávy"
+#  "*": /channellocalchat !*
+#lchat:
+#  "*": /localchat !*
+#lc:
+#  "*": /localchat !*
+#
+## -------------------------------
+#
+#globalchat:
+#  0: "reply §6Musíš zadat text zprávy"
+#  "*": /channelglobalchat !*
+#gchat:
+#  "*": /globalchat !*
+#gc:
+#  "*": /globalchat !*
+#
+## -------------------------------
+#
+#adminchat:
+#  0: "reply §6Musíš zadat text zprávy"
+#  "*": /channeladminchat !*
+#achat:
+#  "*": /adminchat !*
+#ac:
+#  "*": /adminchat !*
+#
+## -------------------------------
+#
+#helpop:
+#  0: "reply §6Musíš zadat text zprávy"
+#  "*": /channelhelpop !*
+#pomoc:
+#  "*": /helpop !*
+#
+## -------------------------------
+#
+#mute:
+#  0: "reply §6/mute <nick> <doba> [důvod]"
+#  1: "reply §6/mute !1 <doba> [důvod]"
+#  "*": /muteplayer global !*
+#unmute:
+#  0: "reply §6/unmute <nick>"
+#  "*": /unmuteplayer global !*
+#
+## -------------------------------
+#
+#placeholdery:
+#  "*": /interactivechat list
+#zminky:
+#  "*": /interactivechat mentiontoggle
+#
+## -------------------------------
+#
+#www:
+#  "*":
+#    - "reply §aWebová stránka serveru SteveCraft"
+#    - "reply §2https://stevecraft.cz"
+#web:
+#  "*": /www
+#
+#discord:
+#  "*":
+#    - "reply §aPřipoj se s námi na náš Discord !"
+#    - "reply §2https://stevecraft.cz/discord"
+#dis:
+#  "*": /discord
+#ts:
+#  "*": /discord
+#teamspeak:
+#  "*": /discord
+#skype:
+#  "*": /discord
+#
+#socialnisite:
+#  "*":
+#    - "reply Zatím žádné sociální sítě nemáme :)"
+#instagram:
+#  "*": /socialnisite
+#facebook:
+#  "*": /socialnisite
+#fb:
+#  "*": /socialnisite
+#youtube:
+#  "*": /socialnisite
+#yt:
+#  "*": /socialnisite
+#skype:
+#  "*": /socialnisite
+#twitter:
+#  "*": /socialnisite
+#twitch:
+#  "*": /socialnisite
+#threads:
+#  "*": /socialnisite
+#tiktok:
+#  "*": /socialnisite
+#
+## -------------------------------
+#
+#vip:
+#  "*": "reply VIP zatím není v provozu."
+#vipplus:
+#  "*": "reply VIP+ zatím není v provozu."
+#vip+:
+#  "*": "reply VIP+ zatím není v provozu."
+#hrdina:
+#  "*": "reply Hrdina zatím není v provozu."
+#vyhody:
+#  "*": "reply Výhody zatím nejsou v provozu."
+#
+## -------------------------------
+#
+#itemy:
+#  "*": "reply Prémiové itemy ke koupi zatím nejsou v provozu."
+#
+## -------------------------------
+#
+#prikazy:
+#  "0":
+#    - "reply §8-------------------[§b Příkazy §8]-------------------"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §e  [/prikazy chat] §f- chatovací příkazy"
+#    - "wait 1 reply §e  [/prikazy parta] §f- příkazy pro partu"
+#    - "wait 1 reply §e  [/prikazy server] §f- serverové příkazy"
+#    - "wait 1 reply §e  [/prikazy gameplay] §f- příkazy pro gameplay"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §e          <<< [/prikazy gameplay]        [/prikazy chat] >>>"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §8-----------------------------------------------"
+#
+#prikazy chat:
+#  "*":
+#    - "reply §8---------------[§b Chatovací příkazy §8]--------------"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §e  [/msg nick zpráva] §f- napíšeš soukromou zprávu hráči"
+#    - "wait 1 reply §e  [/reply zpráva] §f- odepíšeš na soukromou zprávu"
+#    - "wait 1 reply §e  [/pomoc zpráva] §f- požádáš o pomoc (zprávu vidí všichni)"
+#    - "wait 1 reply §e  [/channelglobalchat] §f- přepneš se do normálního chatu"
+#    - "wait 1 reply §e  [/placeholdery] §f- seznam chat placeholderů"
+#    - "wait 1 reply §e  [/zminky] §f- vypneš upozornění na zmínky v chatu"
+#    - "wait 1 reply §e  [/ignorovat nick] §f- začneš ignorovat zprávy hráče"
+#    - "wait 1 reply §e  [/vypnoutsepot] §f- zablokuješ si soukromé zprávy"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §e          <<< [/prikazy]        [/prikazy parta] >>>"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §8-----------------------------------------------"
+#
+#prikazy parta:
+#  "*":
+#    - "reply §8---------------[§b Příkazy pro partu §8]--------------"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §6            Parta je chat místnost pro několik lidí"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §e  [/parta host] §f- vytvoříš novou partu"
+#    - "wait 1 reply §e  [/parta chat] §f- přepneš se do chatu pro partu"
+#    - "wait 1 reply §e  [/parta join nick] §f- přidáš se do party hráče"
+#    - "wait 1 reply §e  [/parta kick nick] §f- vykopneš hráče z party"
+#    - "wait 1 reply §e  [/parta ban nick] §f- zakážeš hráči připojení do party"
+#    - "wait 1 reply §e  [/parta unban nick] §f- povolíš hráči připojení do party"
+#    - "wait 1 reply §e  [/parta info] §f- informace o tvé partě"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §e          <<< [/prikazy chat]        [/prikazy server] >>>"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §8-----------------------------------------------"
+#
+#prikazy server:
+#  "*":
+#    - "reply §8--------------[§b Serverové příkazy §8]--------------"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §e  [/list] §f- seznam online hráčů na serveru kde jsi ty"
+#    - "wait 1 reply §e  [/glist all] §f- seznam všech online hráčů"
+#    - "wait 1 reply §e  [/tps] §f- zobrazí jak je server zrovna zalagovaný"
+#    - "wait 1 reply §e  [/vyhody] §f- informace o VIP, VIP+ a Hrdinovi"
+#    - "wait 1 reply §e  [/itemy] §f- informace o prémiových itemech"
+#    - "wait 1 reply §e  [/web] §f- webové stránky serveru"
+#    - "wait 1 reply §e  [/socialnisite] §f- sociální sítě serveru"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §e          <<< [/prikazy parta]        [/prikazy gameplay] >>>"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §8-----------------------------------------------"
+#
+#prikazy gameplay:
+#  "*":
+#    - "reply §8-------------[§b Příkazy pro gameplay §8]-------------"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §e  [/skin set] §f- nastavíš si skin (vzhled) postavy"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §e          <<< [/prikazy server]        [/prikazy] >>>"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §8-----------------------------------------------"
+#
+## -------------------------------
+## -------------------------------
+## -------------------------------
+#
+#v:
+#  "*": /vanish
+#ev:
+#  "*": /vanish
+#evanish:
+#  "*": /vanish
+#itemdb:
+#  "*": /idb !*
+#
+#regen:
+#  "*": /restore !*
+#"/regen":
+#  "*": /restore !*
+#
+#hack:
+#  "*": /aac moderator
+#hacky:
+#  "*": /aac moderator
+#hacks:
+#  "*": /aac moderator
+#
+#vote top:
+#  0: "reply §aIwitrag hlasoval nejvíc, nemáš zač."
+#
+#home:
+#  0:
+#    - /ehome
+#    - "reply §7§l  >> §7Pokud ti nejde port na home, zkus napsat §a/home home"
+#  "*": /ehome !*
+#
+#kdoje:
+#  "*": /realname !*
+#
+#jobs:
+#  "*": /job
+#
+#prace:
+#  "*": /job
+#
+#odhazovatko:
+#  "*": /give !name paper 1 unbreaking:3 lore:&4Odhazovatko
+#odh:
+#  "*": /odhazovatko
+#
+#changepw:
+#  "*": /changepassword !*
+#
+#awarp:
+#  permission: awarp
+#  0: "reply §cZadej nazev warpu (bez trech tecek)"
+#  "*": /warp ...!*
+#
+#adminwarp:
+#  "*": /awarp !*
+#
+#bug:
+#  0: "reply §cMusis za to zadat zpravu dotazu, hlaseni chyby, nazoru, atd..."
+#  "*": /mail send Iwitrag !*
+#
+#hd:
+#  "*": /hologram !*
+#
+#kos:
+#  0: /disposal
+#
+#odmeny:
+#  0: /rewards
+#
+#levely:
+#  0: /mcstats
+#
+#kompas:
+#  0: /compass
+#
+#odlagovat:
+#  permission: odlagovat
+#  0:
+#    - "reply §8---------------------------------------------"
+#    - "reply §bOdlagovani spusteno"
+#    - /killall drops,arrows,xp,monsters,ambient world
+#    - /killall drops,arrows,xp,monsters,ambient,animals world_nether
+#    - /killall drops,arrows,xp,monsters,ambient,animals world_the_end
+#    - /killall drops,arrows,xp,monsters,ambient,animals pvp
+#    - "reply §a§lHotovo :)"
+#    - "reply §8---------------------------------------------"
+#
+#nocnivideni:
+#  "*": /nv !*
+#nocnividenioff:
+#  "*": /nvoff !*
+#
+## vidis v noci
+#nv:
+#  permission: nocnivideni
+#  0:
+#    - console /effect give !name minecraft:night_vision 99999 0 true
+#    - "reply §2Noční vidění aktivováno, vypneš ho příkazem §a/nvoff"
+#  1:
+#    - console /effect give !1 minecraft:night_vision 99999 0 true
+#    - "reply §2Noční vidění pro hráče !1 aktivováno, vypneš ho příkazem §a/nvoff !1"
+#
+#nvoff:
+#  permission: nocnivideni
+#  0:
+#    - console /effect clear !name minecraft:night_vision
+#    - "reply §2Noční vidění vypnuto"
+#  1:
+#    - console /effect clear !1 minecraft:night_vision
+#    - "reply §2Noční vidění pro hráče !1 vypnuto"
+#
+#
+#plugman:
+#  "*": /pluginmanager !*
+#
+## z MCMMO na essentials
+#repair:
+#  0: /erepair
+#  "*": /erepair !*
+#
+#sunday:
+#  # slunce a den
+#  0:
+#    - /sun
+#    - /day
+#
+#barvy:
+#  # zobrazi barvy atd
+#  "*":
+#    - "reply §8--------------------------------------------"
+#    - "wait 1 reply   §a§lZákladní barvy a formáty:"
+#    - "wait 1 reply   §f"
+#    - "wait 1 reply   §f §f §11 §22 §33 §44 §55 §66 §77 §88 §99 §00"
+#    - "wait 1 reply   §f §f §aa §bb §cc §dd §ee §ff"
+#    - "wait 1 reply   §f §f §lL§f §mM§f §nN§f §oO                      §c<- formáty"
+#    - "wait 1 reply   §f"
+#    - "wait 1 reply   §aJak se píše barevně?"
+#    - "wait 1 reply   §fNapiš třeba §d&d§eTEXT"
+#    - "wait 1 reply   Znak §d& §fse píše pravý alt + C"
+#    - "wait 1 reply   §f"
+#    - "wait 1 reply   §aA co další barvy?"
+#    - "wait 1 reply   §fHexadecimální barvy se píšou §d#abcdef§eTEXT"
+#    - "wait 1 reply   Znak §d# §fse píše pravý alt + X"
+#    - "wait 1 reply   §f"
+#    - "wait 1 reply   §2 - §aDo chatu může psát barevně VIP a vyšší"
+#    - "wait 1 reply   §2 - §aDo chatu může psát s formátem Hrdina"
+#    - "wait 1 reply   §2 - §aNa cedulky může psát barevně kdokoliv"
+#    - "wait 1 reply   §2 - §aDo knih může psát barevně kdokoliv"
+#    - "wait 1 reply §8--------------------------------------------"
+#
+#obchod:
+#  # jak vytvorit chestshop
+#  0:
+#    - "reply §8---------------------------------------------"
+#    - "wait 1 reply §fChestShop je plugin na tvorbu obchodů, ve kterých"
+#    - "wait 1 reply §fmůžeš prodávat předměty nebo je i kupovat od hráčů."
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §a§lJak vytvořit ChestShop:"
+#    - "wait 1 reply §21. §fMusíš mít připravenou rezidenci jako ochranu"
+#    - "wait 1 reply §22. §fPostav truhlu a dej do ní něco (třeba dia)"
+#    - "wait 1 reply §23. §fNad truhlu musíš umístit cedulku s textem"
+#    - "wait 1 reply §f 1. řádek - NIC"
+#    - "wait 1 reply §f 2. řádek - Počet prodávaných nebo kupovaných kusů"
+#    - "wait 1 reply §f 3. řádek - Nákupní a prodejní cenu, např. B 10 : 5 S"
+#    - "wait 1 reply §f 4. řádek - Tady napiš jen otazník (?)"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §fUkázka obchodu: §a/obchod ukazka"
+#    - "wait 1 reply §8---------------------------------------------"
+#
+#obchod ukazka:
+#  # ukazka chestshop
+#  0:
+#    - "reply §8---------------------------------------------"
+#    - "wait 1 reply §aUkázka cedulky pro Chestshop"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §8§o(nic)"
+#    - "wait 1 reply §f32"
+#    - "wait 1 reply §fB 1000 : 250 S"
+#    - "wait 1 reply §f?"
+#    - "wait 1 reply §f"
+#    - "wait 1 reply §fA do truhly jsme předtím dali 10 stacků diamantů."
+#    - "wait 1 reply §fTo znamená, že hráči si budou moct koupit 32 dia"
+#    - "wait 1 reply §fza $1000 a nebo je můžou i do obchodu prodávat"
+#    - "wait 1 reply §f32 kusů za $250"
+#    - "wait 1 reply §cNezapomeň, že obchod musí být v rezidenci!"
+#    - "wait 1 reply §8---------------------------------------------"
+#
+#shop:
+#  "*": /obchod !*
+#
+#cmds:
+#  # command signs
+#  0: /cmdsign
+#  "*": /cmdsign !*
+#
+#pex:
+#  "*": /perm !*
+#
+#inspektor:
+#  # co inspect - kontrola griefu apod
+#  "*": /co inspect
+#
+#inspektor zapnout:
+#  # co inspect - kontrola griefu apod
+#  "*": /co inspect on
+#
+#inspektor vypnout:
+#  # co inspect - kontrola griefu apod
+#  "*": /co inspect off
+#
+#inspektor zap:
+#  # co inspect - kontrola griefu apod
+#  "*": /co inspect on
+#
+#inspektor vyp:
+#  # co inspect - kontrola griefu apod
+#  "*": /co inspect off
+#
+#radar:
+#  # essentials near - hraci v okoli
+#  "*": /near !*
+#
+#clear:
+#  # protoze to buguje nebo koliduje
+#  0: /clean
+#
+#pravidla:
+#  # zobrazí pravidla serveru
+#  "*": /rules !*
+#
+#penize:
+#  # zobrazi stav uctu
+#  0: /money
+#  1: /money !1
+#
+#nejbohatsi:
+#  # zobrazi nejbohatsi hrace
+#  0: /baltop
+#
+#zaplatit:
+#  # zaplati penize
+#  0: "reply §bPouziti:§f /zaplatit <nick> <castka>"
+#  1: "reply §bPouziti:§f /zaplatit <nick> <castka>"
+#  2: /pay !1 !2
+#
+#sekyrka:
+#  # wand
+#  0: //wand
+#
+#sekyra:
+#  # wand
+#  0: //wand
+#
+#sekera:
+#  # wand
+#  0: //wand
+#
+#cas:
+#  # zobrazí čas ve hře
+#  0: /time
+#
+#kocka:
+#  # kittycannon
+#  0: /kittycannon
+#
+#blesk:
+#  # lightning
+#  0: /lightning
+#
+#zmenheslo:
+#  # zmena hesla, co dodat
+#  0: /changepassword
+#  1: /changepassword !1
+#  2: /changepassword !1 !2
+#
+#zmenitheslo:
+#  # zmena hesla, co dodat
+#  0: /changepassword
+#  1: /changepassword !1
+#  2: /changepassword !1 !2
+#
+#zpet:
+#  # back
+#  0: /back
+#
+#umrit:
+#  # sebevrazda
+#  0: /suicide
+#
+#kill:
+#  # sebevrazda
+#  0: /suicide
+#
+#recept:
+#  # recipe
+#  0: /recipe
+#  1: /recipe !1
+#
+#doly:
+#  # warp doly
+#  0: /warp doly
+#
+#adminshop:
+#  # warp shop
+#  0: /warp shop
+#
+#warpshop:
+#  # warp shop
+#  0: /warp shop
+#
+#admini:
+#  # warp tym
+#  0: /warp tym
+#
+#atym:
+#  # warp tym
+#  0: /warp tym
+#
+#ateam:
+#  # warp tym
+#  0: /warp tym
+#
+#karma:
+#  # karma system
+#  "*": /rep !*
+#
+#koupit ticket:
+#  # koupi ticket(y)
+#  0: /lot buy 1
+#  1: /lot buy !1
+#
+#svatba:
+#  # alias pro marry
+#  "*": /marry !*
+#
+#hns:
+#  # alias pro schovku blockhunt
+#  "*": /blockhunt !*
+#
+#ipban:
+#  "*": /banip !*
+#
+#lag:
+#  "*": /tps
+#
+#tps:
+#  "*":
+#    - /spigot:tps
+#    - "reply §aNad 19 = super§7, §enad 15 = dá se§7, §cpod 15 = lagy"
+#
+#res delete:
+#  # hraci se furt ptali jak se rusi reska
+#  "*": /res remove !*
+#
+#res destroy:
+#  # hraci se furt ptali jak se rusi reska
+#  "*": /res remove !*
+#
+#res smazat:
+#  # hraci se furt ptali jak se rusi reska
+#  "*": /res remove !*
+#
+#res odstranit:
+#  # hraci se furt ptali jak se rusi reska
+#  "*": /res remove !*
+#
+#
+#
+##  # 'dumb' parameter, will just use what you put in
+##  banhammer:
+##      1: /ban !1
+##
+##  # name parameter is replaced with the command users name
+##  gmon:
+##      0: /gamemode creative !name
+##      1: /gamemode creative !1
+##  gmoff:
+##      0: /gamemode survival !name
+##      1: /gamemode survival !1
+##
+##  # call command which needs permission with default player
+##  day:
+##      0: player_as_op /time set 0
+##
+##  # putting a P after the parameter specifies this is a player, and BA should try to guess which player
+##  # useful for things like "/to e0n" instead of "/to Ne0nx3r0"
+##  # This will ONLY look for players that are online
+##  to:
+##      1: /tp !name !1p
+##      2: /tp !1p !2p
+##  bring:
+##      1: /tp !1p !name
+##
+##  # multiple command example
+##  # note spaces in an alias go within quotes
+##  "tp then kick":
+##      1:
+##        - /tp !1p !name
+##        - /kick !1p
+##
+##  # replaced with the item name in the player's hand
+##  hand:
+##    0: I have a !handItemName in my hand right now!
+##
+##  # replace with the item ID in the player's hand
+##  handid:
+##    0: /give !name !handItemID
+##
+##  # Toggle the current player's game mode from survival to creative
+##  gm:
+##    0: /gamemode !oppositeGameMode !name
+##
+##  # Send everything with a command
+##  sendAll:
+##    "*": /say !*
+##
+##  # Send everything with a command, but only on certain parameter lengths
+##  sendAll:
+##    3: /say !*
+##
+##  # Color example
+##  # ----------------
+##  # Available colors:
+##  # BLACK, DARK_BLUE, DARK_GREEN, DARK_AQUA, DARK_RED, DARK_PURPLE, GOLD, GRAY,
+##  # DARK_GRAY, BLUE, GREEN, AQUA, RED, LIGHT_PURPLE, YELLOW, WHITE, MAGIC, BOLD,
+##  # STRIKETHROUGH, UNDERLINE, ITALIC, RESET
+##  #
+##  # (Also shows how to use the reply modifier to only reply to the player)
+##  redText:
+##    0: reply Look at my &REDcolored &DARK_GREENtext!
+##
+##  # User must have betteralias.staff permission or be the console.
+##  staff:
+##    permission: staff
+##    0:
+##      - /seen Ne0nx3r0
+##      - /seen someOtherStaffMember
+##      - /seen someThirdStaffMember
+##
+##  # Console example
+##  # If this seems dangerous, that's because it is!
+##  #
+##  makeOp:
+##  # Required permission will be betteralias.your.node
+##    permission: your.node
+##  # Must be makeOp, not Makeup, makeop, etc.
+##    caseSensitive: true
+##  # Quotes are required because 0 uses a colon (:)
+##    0: "reply Usage: /makeOp <username>"
+##    1:
+##      - console /say !1 has been opped!
+##      - console /op !1
+##      - /me has opped !1
+##
+##  # Wait example
+##  wait:
+##  # Quotes are required because 0 uses a colon (:)
+##    0:
+##      - wait 100 console /me thinks this message will come last!
+##      - wait 80 /me thinks this message will come third
+##      - wait 40 reply this came second!
+##      - console /say this message came first!
