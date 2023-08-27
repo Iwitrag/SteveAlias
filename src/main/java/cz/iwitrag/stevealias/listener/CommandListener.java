@@ -14,7 +14,8 @@ public class CommandListener implements Listener
     {
         if (e.getSender() instanceof CommandSender sender)
         {
-
+            // TODO - CommandListener - check if command is registered and execute it
+            // TODO - CommandListener - what about console sender?
         }
     }
 }

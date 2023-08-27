@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/** Turns loaded configuration into usable objects */
+/** Turns loaded configuration into SteveCommands */
 @EverythingIsNonnullByDefault
 public class ConfigurationParser
 {
@@ -123,4 +123,5 @@ public class ConfigurationParser
         }
     }
 
+    // TODO - ConfigurationParser - add better error checking and logs for user
 }
