@@ -1,6 +1,7 @@
 package cz.iwitrag.stevealias.configuration;
 
 import cz.iwitrag.stevealias.SteveAliasBungeePlugin;
+import cz.iwitrag.stevealias.annotations.EverythingIsNonnullByDefault;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+@EverythingIsNonnullByDefault
 public class ConfigurationsLoader
 {
     private static final String CONFIG_FILENAME = "config.yml";

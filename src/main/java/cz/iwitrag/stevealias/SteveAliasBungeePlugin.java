@@ -1,5 +1,6 @@
 package cz.iwitrag.stevealias;
 
+import cz.iwitrag.stevealias.annotations.EverythingIsNonnullByDefault;
 import cz.iwitrag.stevealias.configuration.ConfigurationsLoader;
 import cz.iwitrag.stevealias.configuration.Configurations;
 import cz.iwitrag.stevealias.listener.CommandListener;
@@ -8,6 +9,7 @@ import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
 
+@EverythingIsNonnullByDefault
 public class SteveAliasBungeePlugin extends Plugin
 {
     private Configurations configurations;
