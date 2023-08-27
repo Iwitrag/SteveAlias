@@ -2,30 +2,32 @@ package cz.iwitrag.stevealias.command;
 
 import cz.iwitrag.stevealias.annotations.EverythingIsNonnullByDefault;
 
-import java.util.Map;
+import java.util.HashSet;
 import java.util.Optional;
-import java.util.TreeMap;
+import java.util.Set;
 
 /** Serves as database of known commands - both from aliases config and from plugin itself */
 @EverythingIsNonnullByDefault
 public class CommandManager
 {
-    private final Map<String, SteveCommand> registeredCommands = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+    private final Set<SteveCommand> registeredCommands = new HashSet<>();
 
-    public void registerCommand(String alias, SteveCommand command)
+    public void registerCommand(SteveCommand command)
     {
-        if (registeredCommands.containsKey(alias))
+        if (registeredCommands.contains(command))
         {
-            throw new IllegalArgumentException(String.format("Command %s is already registered.", alias));
+            throw new IllegalArgumentException(String.format("Command %s is already registered.", command.getAlias()));
         }
         else
         {
-            registeredCommands.put(alias, command);
+            registeredCommands.add(command);
         }
     }
 
     public Optional<SteveCommand> getCommand(String alias)
     {
-        return Optional.ofNullable(registeredCommands.get(alias));
+        return registeredCommands.stream()
+                .filter(command -> command.getAlias().equalsIgnoreCase(alias))
+                .findFirst();
     }
 }

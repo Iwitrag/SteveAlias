@@ -9,14 +9,16 @@ import java.util.stream.Collectors;
 @EverythingIsNonnullByDefault
 public class SteveCommand
 {
+    public static final int ANY_AMOUNT_OF_ARGS = -1;
+
     private final String alias;
     private final Map<Integer, List<CommandOperation>> operations;
 
-    private SteveCommand(Builder builder)
+    public SteveCommand(String alias, Map<Integer, List<CommandOperation>> operations)
     {
-        this.alias = builder.alias;
+        this.alias = alias;
         this.operations = Collections.unmodifiableMap(
-                builder.operations.entrySet().stream()
+                operations.entrySet().stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         entry -> Collections.unmodifiableList(entry.getValue())
@@ -43,32 +45,5 @@ public class SteveCommand
         return operations.containsKey(arguments)
                 ? operations.get(arguments)
                 : List.of();
-    }
-
-    public static final class Builder
-    {
-        private final String alias;
-        private final Map<Integer, List<CommandOperation>> operations = new HashMap<>();
-
-        public Builder(String alias)
-        {
-            this.alias = alias;
-        }
-
-        public Builder addOperation(int arguments, CommandOperation operation)
-        {
-            if (arguments < 0)
-            {
-                throw new IllegalArgumentException("Amount of arguments cannot be negative");
-            }
-            List<CommandOperation> operationsForAmount = operations.computeIfAbsent(arguments, i -> new ArrayList<>());
-            operationsForAmount.add(operation);
-            return this;
-        }
-
-        public SteveCommand build()
-        {
-            return new SteveCommand(this);
-        }
     }
 }

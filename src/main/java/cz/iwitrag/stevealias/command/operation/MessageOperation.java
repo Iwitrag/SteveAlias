@@ -15,6 +15,6 @@ public class MessageOperation implements CommandOperation
     @Override
     public void execute()
     {
-        // TODO - MessageOperation
+        // TODO - MessageOperation - message sender, replace %sender_name% with sender name
     }
 }
