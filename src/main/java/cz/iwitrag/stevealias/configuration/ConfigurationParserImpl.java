@@ -80,7 +80,11 @@ public class ConfigurationParserImpl implements ConfigurationParser
     /** Gets list of operations for given amount of arguments */
     private List<CommandOperation> getOperationsForAmountKey(String aliases, String numberOfArgs)
     {
-        return configuration.getStringList(aliases + CONFIGURATION_PATH_SEPARATOR + numberOfArgs).stream()
+        String path = aliases + CONFIGURATION_PATH_SEPARATOR + numberOfArgs;
+        List<String> ops = configuration.getStringList(path);
+        if (ops.isEmpty())
+            ops = List.of(configuration.getString(path));
+        return ops.stream()
                 .map(operationFactory::getOperation)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
