@@ -1,32 +1,39 @@
 package cz.iwitrag.stevealias;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import cz.iwitrag.stevealias.annotations.EverythingIsNonnullByDefault;
 import cz.iwitrag.stevealias.command.CommandManager;
-import cz.iwitrag.stevealias.configuration.ConfigurationsLoader;
+import cz.iwitrag.stevealias.command.SteveCommand;
+import cz.iwitrag.stevealias.configuration.ConfigurationParserFactory;
 import cz.iwitrag.stevealias.configuration.Configurations;
-import cz.iwitrag.stevealias.configuration.ConfigurationParser;
+import cz.iwitrag.stevealias.configuration.ConfigurationsLoader;
 import cz.iwitrag.stevealias.listener.CommandListener;
 import cz.iwitrag.stevealias.listener.TabCompleteListener;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
-import net.md_5.bungee.config.Configuration;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @EverythingIsNonnullByDefault
 public class SteveAliasBungeePlugin extends Plugin
 {
     private static SteveAliasBungeePlugin instance;
+    private static Injector injector;
     private Configurations configurations;
-    private CommandManager commandManager;
 
     @Override
     public void onEnable()
     {
         super.onEnable();
         instance = this;
+        injector = Guice.createInjector(new ServicesModule());
         registerListeners();
-        configurations = loadConfigurations();
-        commandManager = parseConfigurations(configurations);
+        configurations = loadConfigurations(injector.getInstance(ConfigurationsLoader.class));
+        Set<SteveCommand> configuredCommands = parseConfigurations(configurations, injector.getInstance(ConfigurationParserFactory.class));
+        registerCommands(configuredCommands, injector.getInstance(CommandManager.class));
     }
 
     public static SteveAliasBungeePlugin getInstance()
@@ -45,35 +52,29 @@ public class SteveAliasBungeePlugin extends Plugin
         return configurations;
     }
 
-    public CommandManager getCommandManager()
-    {
-        return commandManager;
-    }
-
     private void registerListeners()
     {
         PluginManager pluginManager = ProxyServer.getInstance().getPluginManager();
-        pluginManager.registerListener(this, new CommandListener());
-        pluginManager.registerListener(this, new TabCompleteListener());
+        pluginManager.registerListener(this, injector.getInstance(CommandListener.class));
+        pluginManager.registerListener(this, injector.getInstance(TabCompleteListener.class));
     }
 
-    private Configurations loadConfigurations()
+    private Configurations loadConfigurations(ConfigurationsLoader loader)
     {
-        return new ConfigurationsLoader().loadConfigurations(this);
+        return loader.loadConfigurations(this);
     }
 
-    private CommandManager parseConfigurations(Configurations configurations)
+    private Set<SteveCommand> parseConfigurations(Configurations configurations, ConfigurationParserFactory configurationParserFactory)
     {
-        CommandManager commandManager = new CommandManager();
-        configurations.aliases().forEach(config -> registerCommandsFromConfiguration(config, commandManager));
-        return commandManager;
+        return configurations.aliases().stream()
+                .map(config -> configurationParserFactory.createParser(config).parseCommands())
+                .flatMap(Set::stream)
+                .collect(Collectors.toSet());
     }
 
-    private void registerCommandsFromConfiguration(Configuration configuration, CommandManager commandManager)
+    private void registerCommands(Set<SteveCommand> commands, CommandManager commandManager)
     {
-        new ConfigurationParser(configuration)
-                .parseCommands()
-                .forEach(commandManager::registerCommand);
+        commands.forEach(commandManager::registerCommand);
     }
 
     // TODO PŘÍKAZY
