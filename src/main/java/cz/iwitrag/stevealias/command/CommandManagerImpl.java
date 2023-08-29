@@ -2,6 +2,7 @@ package cz.iwitrag.stevealias.command;
 
 import cz.iwitrag.stevealias.annotations.EverythingIsNonnullByDefault;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -30,5 +31,15 @@ public class CommandManagerImpl implements CommandManager
                 .findFirst();
     }
 
-    // TODO - when implementing reload command, add method to clear registeredCommands
+    @Override
+    public Set<SteveCommand> getCommands()
+    {
+        return Collections.unmodifiableSet(registeredCommands);
+    }
+
+    @Override
+    public void clearCommands()
+    {
+        registeredCommands.clear();
+    }
 }

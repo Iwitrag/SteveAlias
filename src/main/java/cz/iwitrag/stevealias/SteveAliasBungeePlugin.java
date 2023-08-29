@@ -1,55 +1,36 @@
 package cz.iwitrag.stevealias;
 
+import co.aikar.commands.BungeeCommandManager;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import cz.iwitrag.stevealias.annotations.EverythingIsNonnullByDefault;
 import cz.iwitrag.stevealias.command.CommandManager;
-import cz.iwitrag.stevealias.command.SteveCommand;
-import cz.iwitrag.stevealias.configuration.ConfigurationParserFactory;
-import cz.iwitrag.stevealias.configuration.Configurations;
-import cz.iwitrag.stevealias.configuration.ConfigurationsLoader;
+import cz.iwitrag.stevealias.command.plugin.SteveAliasCommand;
 import cz.iwitrag.stevealias.listener.CommandListener;
 import cz.iwitrag.stevealias.listener.TabCompleteListener;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-
 @EverythingIsNonnullByDefault
 public class SteveAliasBungeePlugin extends Plugin
 {
-    private static SteveAliasBungeePlugin instance;
     private static Injector injector;
-    private Configurations configurations;
 
     @Override
     public void onEnable()
     {
         super.onEnable();
-        instance = this;
-        injector = Guice.createInjector(new ServicesModule());
+        injector = Guice.createInjector(new ServicesModule(this));
         registerListeners();
-        configurations = loadConfigurations(injector.getInstance(ConfigurationsLoader.class));
-        Set<SteveCommand> configuredCommands = parseConfigurations(configurations, injector.getInstance(ConfigurationParserFactory.class));
-        registerCommands(configuredCommands, injector.getInstance(CommandManager.class));
-    }
-
-    public static SteveAliasBungeePlugin getInstance()
-    {
-        return instance;
+        registerPluginCommands();
+        registerConfiguredCommands();
     }
 
     @Override
     public void onDisable()
     {
         super.onDisable();
-    }
-
-    public Configurations getConfigurations()
-    {
-        return configurations;
     }
 
     private void registerListeners()
@@ -59,22 +40,15 @@ public class SteveAliasBungeePlugin extends Plugin
         pluginManager.registerListener(this, injector.getInstance(TabCompleteListener.class));
     }
 
-    private Configurations loadConfigurations(ConfigurationsLoader loader)
+    private void registerPluginCommands()
     {
-        return loader.loadConfigurations(this);
+        BungeeCommandManager manager = new BungeeCommandManager(this);
+        manager.registerCommand(injector.getInstance(SteveAliasCommand.class));
     }
 
-    private Set<SteveCommand> parseConfigurations(Configurations configurations, ConfigurationParserFactory configurationParserFactory)
+    private void registerConfiguredCommands()
     {
-        return configurations.aliases().stream()
-                .map(config -> configurationParserFactory.createParser(config).parseCommands())
-                .flatMap(Set::stream)
-                .collect(Collectors.toSet());
-    }
-
-    private void registerCommands(Set<SteveCommand> commands, CommandManager commandManager)
-    {
-        commands.forEach(commandManager::registerCommand);
+        injector.getInstance(PluginReloader.class).reloadPlugin(this, injector.getInstance(CommandManager.class));
     }
 
     // TODO PŘÍKAZY
