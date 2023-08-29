@@ -10,10 +10,13 @@ import cz.iwitrag.stevealias.command.CommandParserImpl;
 import cz.iwitrag.stevealias.command.operation.OperationFactory;
 import cz.iwitrag.stevealias.command.operation.OperationFactoryImpl;
 import cz.iwitrag.stevealias.configuration.*;
+import cz.iwitrag.stevealias.text.PlaceholderHandler;
+import cz.iwitrag.stevealias.text.PlaceholderHandlerImpl;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 
 public class ServicesModule extends AbstractModule
 {
-    private SteveAliasBungeePlugin plugin;
+    private final SteveAliasBungeePlugin plugin;
 
     public ServicesModule(SteveAliasBungeePlugin plugin)
     {
@@ -28,7 +31,9 @@ public class ServicesModule extends AbstractModule
         bind(CommandParser.class).to(CommandParserImpl.class);
         bind(ConfigurationsLoader.class).to(ConfigurationsLoaderImpl.class);
         bind(OperationFactory.class).to(OperationFactoryImpl.class);
+        bind(PlaceholderHandler.class).to(PlaceholderHandlerImpl.class);
         bind(PluginReloader.class).to(PluginReloaderImpl.class);
+        bind(MiniMessage.class).toInstance(MiniMessage.miniMessage());
         install(new FactoryModuleBuilder().implement(ConfigurationParser.class, ConfigurationParserImpl.class).build(ConfigurationParserFactory.class));
     }
 }

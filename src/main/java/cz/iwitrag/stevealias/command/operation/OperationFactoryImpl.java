@@ -2,7 +2,7 @@ package cz.iwitrag.stevealias.command.operation;
 
 import com.google.inject.Inject;
 import cz.iwitrag.stevealias.annotations.EverythingIsNonnullByDefault;
-import cz.iwitrag.stevealias.command.CommandParser;
+import cz.iwitrag.stevealias.text.PlaceholderHandler;
 
 import java.util.Optional;
 
@@ -11,12 +11,12 @@ public class OperationFactoryImpl implements OperationFactory
 {
     private static final String MESSAGE_OPERATION_PREFIX = "msg ";
 
-    private final CommandParser commandParser;
+    private final PlaceholderHandler placeholderHandler;
 
     @Inject
-    public OperationFactoryImpl(CommandParser commandParser)
+    public OperationFactoryImpl(PlaceholderHandler placeholderHandler)
     {
-        this.commandParser = commandParser;
+        this.placeholderHandler = placeholderHandler;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class OperationFactoryImpl implements OperationFactory
         String operationLower = operation.toLowerCase();
         if (operationLower.startsWith(MESSAGE_OPERATION_PREFIX))
         {
-            return Optional.of(new MessageOperation(commandParser, operation.substring(MESSAGE_OPERATION_PREFIX.length())));
+            return Optional.of(new MessageOperation(placeholderHandler, operation.substring(MESSAGE_OPERATION_PREFIX.length())));
         }
         return Optional.empty();
     }
