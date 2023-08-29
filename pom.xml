@@ -54,6 +54,12 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <minimizeJar>true</minimizeJar>
+                            <entryPoints>
+                                <entryPoint>cz.iwitrag.stevealias.SteveAliasBungeePlugin</entryPoint>
+                            </entryPoints>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

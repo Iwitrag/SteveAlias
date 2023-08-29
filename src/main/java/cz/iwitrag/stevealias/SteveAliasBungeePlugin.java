@@ -96,4 +96,6 @@ public class SteveAliasBungeePlugin extends Plugin
     // TODO - barvy, minimessages
     // TODO PLACEHOLDER API
 
+    // TODO - make it possible to execute aliases from console - no listener for that, need to a) make aliases registered commands b) create special command to run aliases from console
+
 }
