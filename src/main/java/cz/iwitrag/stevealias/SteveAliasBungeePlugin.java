@@ -15,13 +15,16 @@ import net.md_5.bungee.api.plugin.PluginManager;
 @EverythingIsNonnullByDefault
 public class SteveAliasBungeePlugin extends Plugin
 {
-    private static Injector injector;
+    private final Injector injector;
+
+    public SteveAliasBungeePlugin()
+    {
+        this.injector = Guice.createInjector(new ServicesModule(this));
+    }
 
     @Override
     public void onEnable()
     {
-        super.onEnable();
-        injector = Guice.createInjector(new ServicesModule(this));
         registerListeners();
         registerPluginCommands();
         registerConfiguredCommands();
@@ -30,7 +33,6 @@ public class SteveAliasBungeePlugin extends Plugin
     @Override
     public void onDisable()
     {
-        super.onDisable();
     }
 
     private void registerListeners()
@@ -52,22 +54,19 @@ public class SteveAliasBungeePlugin extends Plugin
     }
 
     // TODO PŘÍKAZY
-    // - základní příkaz
-    // - reload
     // - seznam aliasů
     // - informace o konkrétním aliasu
 
     // TODO KONFIGURÁKY
-    // - messages
+    // - messages (např. pro reload zprávy)
     // - základní config soubor
-    // - složka s configama pro aliasy
 
     // TODO SPUŠTĚNÍ NA BUKKITU
     // - detekce kde je plugin spuštěn
     // - pokud je backend server v bungeecord režimu, vypnout se
+    // - ACF pro paper pokud plugin běží na bukkitu
 
-    // TODO ALIASY
-    // TODO - barvy, minimessages
+    // TODO složitější alias konfigurace a operace
     // TODO PLACEHOLDER API
 
     // TODO - make it possible to execute aliases from console - no listener for that, need to a) make aliases registered commands b) create special command to run aliases from console
