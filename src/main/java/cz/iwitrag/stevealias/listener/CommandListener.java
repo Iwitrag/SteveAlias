@@ -3,6 +3,7 @@ package cz.iwitrag.stevealias.listener;
 import com.google.inject.Inject;
 import cz.iwitrag.stevealias.annotations.EverythingIsNonnullByDefault;
 import cz.iwitrag.stevealias.command.CommandManager;
+import cz.iwitrag.stevealias.command.CommandParser;
 import cz.iwitrag.stevealias.command.TextCommand;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.event.ChatEvent;
@@ -12,11 +13,13 @@ import net.md_5.bungee.event.EventHandler;
 @EverythingIsNonnullByDefault
 public class CommandListener implements Listener
 {
+    private final CommandParser commandParser;
     private final CommandManager commandManager;
 
     @Inject
-    public CommandListener(CommandManager commandManager)
+    public CommandListener(CommandParser commandParser, CommandManager commandManager)
     {
+        this.commandParser = commandParser;
         this.commandManager = commandManager;
     }
 
@@ -25,7 +28,7 @@ public class CommandListener implements Listener
     {
         if (e.getSender() instanceof CommandSender sender && e.isCommand())
         {
-            TextCommand textCmd = TextCommand.parseCommand(e.getMessage());
+            TextCommand textCmd = commandParser.parseCommand(e.getMessage());
             commandManager.getCommand(textCmd.getCommandWithoutSlash()).ifPresent(command -> {
                 e.setCancelled(true);
                 command.getOperations(textCmd.getArguments().size())
