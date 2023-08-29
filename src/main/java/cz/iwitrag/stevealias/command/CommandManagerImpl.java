@@ -29,4 +29,6 @@ public class CommandManagerImpl implements CommandManager
                 .filter(command -> command.getAlias().equalsIgnoreCase(alias))
                 .findFirst();
     }
+
+    // TODO - when implementing reload command, add method to clear registeredCommands
 }
